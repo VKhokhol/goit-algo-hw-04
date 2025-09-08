@@ -6,7 +6,7 @@ with open('salaries.txt', 'w', encoding='utf-8') as f:
 #Створення функції з одним аргументом.   
 def total_salary(path):
 #Створення двох змінних для виведення середньої та сумарної зарплати
-    middle_salary = 0
+    middle_salary = 10
     sum_salary = 0
 #Відкриття файлу для читання з явно визначеним кодуванням
     with open(path, 'r', encoding='utf-8') as f:
