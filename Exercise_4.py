@@ -4,24 +4,30 @@ def parse_input(user_input):
     return cmd, *args
 
 def add_contact(args, contacts):
+    if len(args)<2:
+        return 'Error: provide name and phone'
     name, phone = args
     contacts[name] = phone
     return "Contact added."
 
 def change_contact(args, contacts):
+    if len(args)<2:
+        return 'Error: provide name and new phone'
     name, phone = args
     if name in contacts:
         contacts[name] = phone
-        return 'Contact changed'
+        return 'Contact updated'
     else:
         return 'Contact error'
 
 def show_phone(args, contacts):
+    if len(args)<1:
+        return 'Error: Provide name'
     name = args[0]
     if name in contacts:
         return contacts[name]
     else:
-        return "error"
+        return "Contact not found"
     
 def show_all(args, contacts):
     return contacts
