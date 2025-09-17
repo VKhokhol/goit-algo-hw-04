@@ -17,7 +17,7 @@ def total_salary(path):
         for line in lines:
             _, sal = line.split(',')
 #Перетворення змінної в об'єкт типу int та обрахунок сумарної зарплати
-            sum_salary+= int(sal)
+            sum_salary+= float(sal)
 #Перевірка на те, чи не пустий файл для того, щоб уникнути ділення на 0 при обрахунку середньої зарплати
         if len(lines) == 0:
             middle_salary = 0
