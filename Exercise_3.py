@@ -1,27 +1,29 @@
+import os
 import sys
-from pathlib import Path
 from colorama import Fore, Style, init
 
-init(autoreset=True)  # сбрасывать цвет после каждой строки
+init(autoreset=True)
 
-# Проверяем, передан ли аргумент
-if len(sys.argv) < 2:
-    print("Пожалуйста, укажите путь к директории.")
+def show_folder(path, level=0):
+    for name in os.listdir(path):
+        full_path = os.path.join(path, name)
+        indent = "  " * level  # делаем отступы
+        if os.path.isdir(full_path):
+            print(Fore.BLUE + f"{indent}{name}")
+            show_folder(full_path, level + 1)
+        else:
+            print(Fore.GREEN + f"{indent}{name}")
+
+if len(sys.argv)<2:
+    print('Шлях не вказаний')
     sys.exit(1)
 
-path = Path(sys.argv[1])
-
-# Проверка, существует ли путь и это директория
-if not path.exists():
-    print("Такого пути не существует!")
+folder_path = sys.argv[1]
+if not os.path.exists(folder_path):
+    print('Шлях не знайдений')
     sys.exit(1)
-if not path.is_dir():
-    print("Указанный путь не ведет к директории!")
+if not os.path.isdir(folder_path):
+    print('Шлях веде не до папки')
     sys.exit(1)
 
-# Простейший вывод содержимого папки
-for item in path.iterdir():
-    if item.is_dir():
-        print(Fore.BLUE + f"[DIR] {item.name}")
-    else:
-        print(Fore.GREEN + f"[FILE] {item.name}")
+show_folder(folder_path)
